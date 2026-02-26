@@ -1,0 +1,2400 @@
+<!doctype html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CXP - UI Mockup Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: { DEFAULT: "#2563eb", foreground: "#ffffff" },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: flex;
+      }
+      .nav-item.active {
+        background: rgba(37, 99, 235, 0.1);
+        color: #2563eb;
+      }
+      /* Smooth transitions */
+      .sidebar-nav button {
+        transition: all 0.15s ease;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #d4d4d8;
+        border-radius: 3px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #52525b;
+      }
+      /* Active session override */
+      .session-item.\!text-white,
+      .session-item.\!text-white span {
+        color: white !important;
+      }
+    </style>
+  </head>
+  <body class="bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100">
+    <!-- ═══════════════════════════════════════ -->
+    <!-- LOGIN PAGE (standalone, no sidebar)    -->
+    <!-- ═══════════════════════════════════════ -->
+    <div
+      id="page-login"
+      class="page active min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-900">
+      <div class="w-full max-w-md space-y-8 px-4">
+        <div class="text-center">
+          <h1 class="text-5xl font-bold text-zinc-900 dark:text-zinc-50">
+            CXP
+          </h1>
+          <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+            AI Agent-based Project Automation Platform
+          </p>
+        </div>
+        <div class="mt-8 space-y-6">
+          <div
+            class="space-y-4 rounded-lg bg-white dark:bg-zinc-800 p-8 shadow-sm">
+            <div>
+              <label
+                class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                >Email</label
+              >
+              <input
+                type="email"
+                value="demo@cxp.com"
+                class="mt-1 block w-full rounded-md border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-3 py-2 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                placeholder="user@example.com" />
+            </div>
+            <div>
+              <label
+                class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                >Password</label
+              >
+              <input
+                type="password"
+                value="password123"
+                class="mt-1 block w-full rounded-md border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-3 py-2 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
+                placeholder="••••••••" />
+            </div>
+            <button
+              onclick="navigateTo('dashboard')"
+              class="w-full rounded-md bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 transition-colors">
+              Login
+            </button>
+          </div>
+        </div>
+        <p class="text-center text-sm text-zinc-600 dark:text-zinc-400">
+          Don't have an account?
+          <a
+            href="#"
+            onclick="navigateTo('register')"
+            class="font-medium text-blue-600 hover:text-blue-700"
+            >Sign Up</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- REGISTER PAGE                          -->
+    <!-- ═══════════════════════════════════════ -->
+    <div
+      id="page-register"
+      class="page min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-900">
+      <div class="w-full max-w-md space-y-8 px-4">
+        <div class="text-center">
+          <h1 class="text-5xl font-bold text-zinc-900 dark:text-zinc-50">
+            CXP
+          </h1>
+          <p class="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+            Create your account
+          </p>
+        </div>
+        <div class="mt-8 space-y-6">
+          <div
+            class="space-y-4 rounded-lg bg-white dark:bg-zinc-800 p-8 shadow-sm">
+            <div>
+              <label
+                class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                >Email</label
+              >
+              <input
+                type="email"
+                class="mt-1 block w-full rounded-md border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-3 py-2 text-zinc-900 dark:text-zinc-100"
+                placeholder="user@example.com" />
+            </div>
+            <div>
+              <label
+                class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                >Username</label
+              >
+              <input
+                type="text"
+                class="mt-1 block w-full rounded-md border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-3 py-2 text-zinc-900 dark:text-zinc-100"
+                placeholder="John Doe" />
+            </div>
+            <div>
+              <label
+                class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                >Password</label
+              >
+              <input
+                type="password"
+                class="mt-1 block w-full rounded-md border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-3 py-2 text-zinc-900 dark:text-zinc-100"
+                placeholder="••••••••" />
+              <p class="mt-1 text-xs text-zinc-500">At least 6 characters</p>
+            </div>
+            <div>
+              <label
+                class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                class="mt-1 block w-full rounded-md border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-3 py-2 text-zinc-900 dark:text-zinc-100"
+                placeholder="••••••••" />
+            </div>
+            <button
+              class="w-full rounded-md bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">
+              Sign Up
+            </button>
+          </div>
+        </div>
+        <p class="text-center text-sm text-zinc-600 dark:text-zinc-400">
+          Already have an account?
+          <a
+            href="#"
+            onclick="navigateTo('login')"
+            class="font-medium text-blue-600 hover:text-blue-700"
+            >Login</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- APP SHELL (Sidebar + Header + Content) -->
+    <!-- ═══════════════════════════════════════ -->
+    <div id="page-dashboard" class="page h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <div
+        id="sidebar"
+        class="flex h-screen w-64 flex-col bg-white dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-800 shrink-0 transition-all duration-300">
+        <!-- Header -->
+        <div class="flex h-16 items-center justify-between px-4">
+          <button
+            onclick="toggleSidebar()"
+            class="rounded-md p-2 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <h1
+            id="sidebar-title"
+            class="text-2xl font-bold text-zinc-900 dark:text-white">
+            CXP
+          </h1>
+        </div>
+        <!-- Project Selector -->
+        <div class="px-3 py-2">
+          <select
+            id="project-selector"
+            class="w-full rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 focus:border-blue-600 focus:outline-none">
+            <option value="proj-001">CXP Platform</option>
+            <option value="proj-002">Mobile App</option>
+            <option value="proj-003">Data Pipeline</option>
+          </select>
+        </div>
+        <!-- Navigation -->
+        <nav id="sidebar-nav" class="space-y-1 px-3 py-4">
+          <button
+            onclick="showContent('dashboard-content')"
+            class="nav-item active flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            <svg
+              class="mr-3 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+            <span class="sidebar-text">Dashboard</span>
+          </button>
+          <button
+            onclick="showContent('chat-content')"
+            class="nav-item flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            <svg
+              class="mr-3 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            <span class="sidebar-text">Chat</span>
+          </button>
+          <button
+            onclick="showContent('analytics-content')"
+            class="nav-item flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            <svg
+              class="mr-3 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+            <span class="sidebar-text">Analytics</span>
+          </button>
+          <button
+            onclick="showContent('workplace-content')"
+            class="nav-item flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            <svg
+              class="mr-3 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span class="sidebar-text">Workplace</span>
+          </button>
+          <button
+            onclick="showContent('settings-content')"
+            class="nav-item flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            <svg
+              class="mr-3 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <span class="sidebar-text">Settings</span>
+          </button>
+        </nav>
+        <!-- Session List -->
+        <div
+          id="sidebar-sessions"
+          class="flex-1 overflow-y-auto px-3 border-t border-zinc-200 dark:border-zinc-800 pt-3">
+          <p
+            class="sidebar-text px-3 py-1 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+            Recent Sessions
+          </p>
+          <!-- Session: Orchestrator -->
+          <button
+            onclick="showChatSession('orchestrator')"
+            class="sidebar-text session-item flex w-full items-center rounded-lg px-3 py-2 text-sm text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 group"
+            data-session="orchestrator">
+            <span class="truncate flex-1 text-left">Summarize project status</span>
+            <span class="ml-1 shrink-0 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
+              <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-width="2" d="M12 8v4l3 3"/></svg>
+            </span>
+          </button>
+          <!-- Session: Jira -->
+          <button
+            onclick="showChatSession('jira')"
+            class="sidebar-text session-item flex w-full items-center rounded-lg px-3 py-2 text-sm text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 group"
+            data-session="jira">
+            <span class="truncate flex-1 text-left">Create login bug ticket</span>
+            <span class="ml-1 shrink-0 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300">
+              <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            </span>
+          </button>
+        </div>
+        <!-- User Info -->
+        <div class="border-t border-zinc-200 dark:border-zinc-800 p-4">
+          <div
+            class="flex items-center cursor-pointer"
+            onclick="showContent('profile-content')">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-sm font-medium text-white shrink-0">
+              D
+            </div>
+            <div class="sidebar-text ml-3 overflow-hidden">
+              <p
+                class="truncate text-sm font-medium text-zinc-900 dark:text-white">
+                Demo User
+              </p>
+              <p class="truncate text-xs text-zinc-600 dark:text-zinc-400">
+                demo@cxp.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Area -->
+      <div class="flex flex-1 flex-col overflow-hidden">
+        <!-- Header Bar -->
+        <header
+          class="flex h-14 items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-6 shrink-0">
+          <div class="flex items-center gap-3">
+            <span
+              id="header-breadcrumb"
+              class="text-sm font-medium text-zinc-600 dark:text-zinc-400"
+              >Dashboard</span
+            >
+          </div>
+          <div class="flex items-center gap-3">
+            <!-- Dark mode toggle -->
+            <button
+              onclick="toggleDarkMode()"
+              class="rounded-lg p-2 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              title="Toggle dark mode">
+              <svg
+                id="theme-icon-sun"
+                class="h-5 w-5 dark:hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5" />
+                <path
+                  stroke-linecap="round"
+                  d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+              </svg>
+              <svg
+                id="theme-icon-moon"
+                class="h-5 w-5 hidden dark:block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            </button>
+            <!-- Logout -->
+            <button
+              onclick="navigateTo('login')"
+              class="rounded-lg px-3 py-1.5 text-sm text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+              Logout
+            </button>
+          </div>
+        </header>
+
+        <!-- Content Area -->
+        <main class="flex-1 overflow-y-auto bg-zinc-50 dark:bg-zinc-900">
+          <!-- ══════ DASHBOARD CONTENT ══════ -->
+          <div id="dashboard-content" class="content-page p-6">
+            <div class="mx-auto max-w-[1920px]">
+              <div class="mb-6">
+                <h1 class="mb-2 text-3xl font-bold">Dashboard</h1>
+                <p class="text-zinc-600 dark:text-zinc-400">
+                  You have 14 action items requiring attention
+                </p>
+              </div>
+              <!-- Stats Cards -->
+              <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div
+                  class="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-600 dark:bg-zinc-800">
+                  <div class="mb-2 flex items-center gap-2">
+                    <svg
+                      class="w-6 h-6 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span
+                      class="text-sm font-medium text-zinc-600 dark:text-zinc-400"
+                      >Emails</span
+                    >
+                  </div>
+                  <div class="text-3xl font-bold">5</div>
+                  <div class="mt-2 text-xs text-zinc-500">3 urgent</div>
+                </div>
+                <div
+                  class="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-600 dark:bg-zinc-800">
+                  <div class="mb-2 flex items-center gap-2">
+                    <svg
+                      class="w-6 h-6 text-red-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    <span
+                      class="text-sm font-medium text-zinc-600 dark:text-zinc-400"
+                      >Tasks</span
+                    >
+                  </div>
+                  <div class="text-3xl font-bold">6</div>
+                  <div class="mt-2 text-xs text-zinc-500">2 urgent</div>
+                </div>
+                <div
+                  class="rounded-lg border border-zinc-200 bg-white p-4 dark:border-zinc-600 dark:bg-zinc-800">
+                  <div class="mb-2 flex items-center gap-2">
+                    <svg
+                      class="w-6 h-6 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span
+                      class="text-sm font-medium text-zinc-600 dark:text-zinc-400"
+                      >Meetings</span
+                    >
+                  </div>
+                  <div class="text-3xl font-bold">4</div>
+                  <div class="mt-2 text-xs text-zinc-500">2 urgent</div>
+                </div>
+              </div>
+              <!-- Urgent Alerts -->
+              <div
+                class="mb-6 rounded-lg border border-red-200 bg-red-50 dark:border-red-900 dark:bg-red-950 p-4">
+                <h3
+                  class="mb-3 flex items-center gap-2 font-semibold text-red-800 dark:text-red-200">
+                  <svg
+                    class="h-5 w-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                  Urgent Alerts (5)
+                </h3>
+                <div class="space-y-2 text-sm text-red-700 dark:text-red-300">
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="rounded bg-red-200 dark:bg-red-800 px-1.5 py-0.5 text-xs font-medium"
+                      >Email</span
+                    >
+                    Security Audit Findings - Immediate Action Needed
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="rounded bg-red-200 dark:bg-red-800 px-1.5 py-0.5 text-xs font-medium"
+                      >Email</span
+                    >
+                    Q1 Sprint Review - Action Items Required
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="rounded bg-red-200 dark:bg-red-800 px-1.5 py-0.5 text-xs font-medium"
+                      >Task</span
+                    >
+                    CXP-156: Fix dashboard loading performance (Critical)
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="rounded bg-red-200 dark:bg-red-800 px-1.5 py-0.5 text-xs font-medium"
+                      >Task</span
+                    >
+                    CXP-142: Implement OAuth2 token refresh flow
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="rounded bg-red-200 dark:bg-red-800 px-1.5 py-0.5 text-xs font-medium"
+                      >Meeting</span
+                    >
+                    Sprint Planning - Q1 Week 9 (Today 2:00 PM)
+                  </div>
+                </div>
+              </div>
+              <!-- 3-Column Panels -->
+              <div class="flex gap-6 lg:flex-row flex-col mb-6">
+                <!-- Emails -->
+                <div class="flex-1 lg:w-1/3">
+                  <div
+                    class="rounded-lg border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800">
+                    <div
+                      class="border-b border-zinc-200 p-4 dark:border-zinc-700">
+                      <div class="flex items-center gap-2">
+                        <svg
+                          class="w-6 h-6 text-blue-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <h2 class="text-xl font-semibold">Emails</h2>
+                        <span
+                          class="ml-auto rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                          >5</span
+                        >
+                      </div>
+                    </div>
+                    <div class="max-h-[500px] overflow-y-auto p-4 space-y-3">
+                      <div
+                        class="rounded-lg border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/30 p-3">
+                        <div class="flex items-start justify-between">
+                          <p class="font-medium text-sm">
+                            Security Audit Findings - Immediate Action
+                          </p>
+                          <span
+                            class="text-xs text-red-600 font-semibold shrink-0 ml-2"
+                            >Critical</span
+                          >
+                        </div>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          security-team@company.com
+                        </p>
+                        <p class="text-xs text-zinc-400 mt-1 line-clamp-2">
+                          Our recent security scan identified 3 critical
+                          vulnerabilities...
+                        </p>
+                      </div>
+                      <div
+                        class="rounded-lg border border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-950/30 p-3">
+                        <div class="flex items-start justify-between">
+                          <p class="font-medium text-sm">
+                            Q1 Sprint Review - Action Items Required
+                          </p>
+                          <span
+                            class="text-xs text-orange-600 font-semibold shrink-0 ml-2"
+                            >High</span
+                          >
+                        </div>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          sarah.kim@company.com
+                        </p>
+                        <p class="text-xs text-zinc-400 mt-1 line-clamp-2">
+                          Please review the attached sprint summary and provide
+                          feedback...
+                        </p>
+                      </div>
+                      <div
+                        class="rounded-lg border border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-950/30 p-3">
+                        <div class="flex items-start justify-between">
+                          <p class="font-medium text-sm">
+                            Data Migration Schedule Confirmation
+                          </p>
+                          <span
+                            class="text-xs text-orange-600 font-semibold shrink-0 ml-2"
+                            >High</span
+                          >
+                        </div>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          dba-team@company.com
+                        </p>
+                        <p class="text-xs text-zinc-400 mt-1 line-clamp-2">
+                          Please confirm the migration window: March 1st
+                          02:00-06:00 UTC...
+                        </p>
+                      </div>
+                      <div
+                        class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
+                        <div class="flex items-start justify-between">
+                          <p class="font-medium text-sm">
+                            Infrastructure Cost Report - Feb 2026
+                          </p>
+                          <span class="text-xs text-zinc-500 shrink-0 ml-2"
+                            >Medium</span
+                          >
+                        </div>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          cloud-ops@company.com
+                        </p>
+                        <p class="text-xs text-zinc-400 mt-1 line-clamp-2">
+                          Monthly infrastructure cost breakdown: Azure $12,450,
+                          AWS $3,200...
+                        </p>
+                      </div>
+                      <div
+                        class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
+                        <div class="flex items-start justify-between">
+                          <p class="font-medium text-sm">
+                            New Feature Request: Offline Mode
+                          </p>
+                          <span class="text-xs text-zinc-400 shrink-0 ml-2"
+                            >Low</span
+                          >
+                        </div>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          product@company.com
+                        </p>
+                        <p class="text-xs text-zinc-400 mt-1 line-clamp-2">
+                          Based on customer feedback, we would like to explore
+                          offline capabilities...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Tasks -->
+                <div class="flex-1 lg:w-1/3">
+                  <div
+                    class="rounded-lg border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800">
+                    <div
+                      class="border-b border-zinc-200 p-4 dark:border-zinc-700">
+                      <div class="flex items-center gap-2">
+                        <svg
+                          class="w-6 h-6 text-red-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                        <h2 class="text-xl font-semibold">Tasks</h2>
+                        <span
+                          class="ml-auto rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                          >6</span
+                        >
+                      </div>
+                    </div>
+                    <div class="max-h-[500px] overflow-y-auto p-4 space-y-3">
+                      <div
+                        class="rounded-lg border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/30 p-3">
+                        <div class="flex items-center gap-2">
+                          <span
+                            class="rounded bg-red-100 dark:bg-red-900 px-1.5 py-0.5 text-xs font-medium text-red-800 dark:text-red-200"
+                            >Critical</span
+                          ><span
+                            class="rounded bg-zinc-100 dark:bg-zinc-700 px-1.5 py-0.5 text-xs font-medium"
+                            >To Do</span
+                          >
+                        </div>
+                        <p class="font-medium text-sm mt-2">
+                          CXP-156: Fix dashboard loading performance
+                        </p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Assigned to: Demo User
+                        </p>
+                      </div>
+                      <div
+                        class="rounded-lg border border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-950/30 p-3">
+                        <div class="flex items-center gap-2">
+                          <span
+                            class="rounded bg-orange-100 dark:bg-orange-900 px-1.5 py-0.5 text-xs font-medium text-orange-800 dark:text-orange-200"
+                            >High</span
+                          ><span
+                            class="rounded bg-blue-100 dark:bg-blue-900 px-1.5 py-0.5 text-xs font-medium text-blue-800 dark:text-blue-200"
+                            >In Progress</span
+                          >
+                        </div>
+                        <p class="font-medium text-sm mt-2">
+                          CXP-142: Implement OAuth2 token refresh flow
+                        </p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Assigned to: Demo User
+                        </p>
+                      </div>
+                      <div
+                        class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
+                        <div class="flex items-center gap-2">
+                          <span
+                            class="rounded bg-zinc-100 dark:bg-zinc-700 px-1.5 py-0.5 text-xs font-medium"
+                            >Medium</span
+                          ><span
+                            class="rounded bg-blue-100 dark:bg-blue-900 px-1.5 py-0.5 text-xs font-medium text-blue-800 dark:text-blue-200"
+                            >In Progress</span
+                          >
+                        </div>
+                        <p class="font-medium text-sm mt-2">
+                          CXP-160: Add i18n support for Arabic locale
+                        </p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Assigned to: Sarah Kim
+                        </p>
+                      </div>
+                      <div
+                        class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
+                        <div class="flex items-center gap-2">
+                          <span
+                            class="rounded bg-zinc-100 dark:bg-zinc-700 px-1.5 py-0.5 text-xs font-medium"
+                            >Medium</span
+                          ><span
+                            class="rounded bg-zinc-100 dark:bg-zinc-700 px-1.5 py-0.5 text-xs font-medium"
+                            >To Do</span
+                          >
+                        </div>
+                        <p class="font-medium text-sm mt-2">
+                          MOB-023: Design push notification settings UI
+                        </p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Assigned to: Demo User
+                        </p>
+                      </div>
+                      <div
+                        class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
+                        <div class="flex items-center gap-2">
+                          <span
+                            class="rounded bg-orange-100 dark:bg-orange-900 px-1.5 py-0.5 text-xs font-medium text-orange-800 dark:text-orange-200"
+                            >High</span
+                          ><span
+                            class="rounded bg-purple-100 dark:bg-purple-900 px-1.5 py-0.5 text-xs font-medium text-purple-800 dark:text-purple-200"
+                            >In Review</span
+                          >
+                        </div>
+                        <p class="font-medium text-sm mt-2">
+                          DATA-089: Optimize ETL pipeline for large datasets
+                        </p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Assigned to: Demo User
+                        </p>
+                      </div>
+                      <div
+                        class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
+                        <div class="flex items-center gap-2">
+                          <span
+                            class="rounded bg-zinc-100 dark:bg-zinc-700 px-1.5 py-0.5 text-xs font-medium"
+                            >Low</span
+                          ><span
+                            class="rounded bg-zinc-100 dark:bg-zinc-700 px-1.5 py-0.5 text-xs font-medium"
+                            >To Do</span
+                          >
+                        </div>
+                        <p class="font-medium text-sm mt-2">
+                          CXP-170: Update API documentation for v2 endpoints
+                        </p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Assigned to: Demo User
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Meetings -->
+                <div class="flex-1 lg:w-1/3">
+                  <div
+                    class="rounded-lg border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800">
+                    <div
+                      class="border-b border-zinc-200 p-4 dark:border-zinc-700">
+                      <div class="flex items-center gap-2">
+                        <svg
+                          class="w-6 h-6 text-green-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <h2 class="text-xl font-semibold">Meetings</h2>
+                        <span
+                          class="ml-auto rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-800 dark:bg-green-900 dark:text-green-200"
+                          >4</span
+                        >
+                      </div>
+                    </div>
+                    <div class="max-h-[500px] overflow-y-auto p-4 space-y-3">
+                      <div
+                        class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
+                        <p class="font-medium text-sm">
+                          Daily Standup - CXP Team
+                        </p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Today 9:00 AM - 9:15 AM
+                        </p>
+                        <span
+                          class="mt-2 inline-block rounded bg-blue-100 dark:bg-blue-900 px-1.5 py-0.5 text-xs font-medium text-blue-800 dark:text-blue-200"
+                          >Scheduled</span
+                        >
+                      </div>
+                      <div
+                        class="rounded-lg border border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-950/30 p-3">
+                        <p class="font-medium text-sm">
+                          Sprint Planning - Q1 Week 9
+                        </p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Today 2:00 PM - 3:30 PM
+                        </p>
+                        <span
+                          class="mt-2 inline-block rounded bg-orange-100 dark:bg-orange-900 px-1.5 py-0.5 text-xs font-medium text-orange-800 dark:text-orange-200"
+                          >High Priority</span
+                        >
+                      </div>
+                      <div
+                        class="rounded-lg border border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/30 p-3">
+                        <p class="font-medium text-sm">
+                          Security Review - Audit Findings
+                        </p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Tomorrow 10:00 AM - 11:00 AM
+                        </p>
+                        <span
+                          class="mt-2 inline-block rounded bg-red-100 dark:bg-red-900 px-1.5 py-0.5 text-xs font-medium text-red-800 dark:text-red-200"
+                          >Critical</span
+                        >
+                      </div>
+                      <div
+                        class="rounded-lg border border-zinc-200 dark:border-zinc-700 p-3">
+                        <p class="font-medium text-sm">Mobile App UX Review</p>
+                        <p class="text-xs text-zinc-500 mt-1">
+                          Tomorrow 3:00 PM - 4:00 PM
+                        </p>
+                        <span
+                          class="mt-2 inline-block rounded bg-blue-100 dark:bg-blue-900 px-1.5 py-0.5 text-xs font-medium text-blue-800 dark:text-blue-200"
+                          >Scheduled</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══════ CHAT CONTENT ══════ -->
+          <div id="chat-content" class="content-page hidden h-full">
+            <div class="flex h-full flex-col items-center justify-center p-8">
+              <div class="mb-12 text-center">
+                <h1 class="mb-4 text-4xl font-bold">AI Chat</h1>
+                <p class="text-lg text-zinc-600 dark:text-zinc-400">
+                  Select a workflow to start a new conversation
+                </p>
+              </div>
+              <div
+                class="mb-8 grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <div
+                  onclick="showChatSession('orchestrator')"
+                  class="group relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 transition-opacity group-hover:opacity-10"></div>
+                  <div class="relative">
+                    <svg
+                      class="mb-4 w-12 h-12 text-zinc-700 dark:text-zinc-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 8v4l3 3" />
+                    </svg>
+                    <h3 class="mb-2 text-xl font-semibold">Orchestration</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      AI analyzes intent and delegates to the right agent
+                      automatically
+                    </p>
+                  </div>
+                  <div
+                    class="absolute right-4 top-4 rounded-full bg-zinc-100 dark:bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-300 opacity-0 transition-opacity group-hover:opacity-100">
+                    Orchestrator
+                  </div>
+                </div>
+                <div
+                  class="group relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-green-500 to-green-600 opacity-0 transition-opacity group-hover:opacity-10"></div>
+                  <div class="relative">
+                    <svg
+                      class="mb-4 w-12 h-12 text-zinc-700 dark:text-zinc-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <h3 class="mb-2 text-xl font-semibold">Email Agent</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      Search, analyze, and draft email responses
+                    </p>
+                  </div>
+                  <div
+                    class="absolute right-4 top-4 rounded-full bg-zinc-100 dark:bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-300 opacity-0 transition-opacity group-hover:opacity-100">
+                    Email
+                  </div>
+                </div>
+                <div
+                  onclick="showChatSession('jira')"
+                  class="group relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-indigo-600 opacity-0 transition-opacity group-hover:opacity-10"></div>
+                  <div class="relative">
+                    <svg
+                      class="mb-4 w-12 h-12 text-zinc-700 dark:text-zinc-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    <h3 class="mb-2 text-xl font-semibold">Task Agent</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      Create, update, and manage Jira tasks
+                    </p>
+                  </div>
+                  <div
+                    class="absolute right-4 top-4 rounded-full bg-zinc-100 dark:bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-300 opacity-0 transition-opacity group-hover:opacity-100">
+                    Jira
+                  </div>
+                </div>
+                <div
+                  class="group relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-pink-500 to-pink-600 opacity-0 transition-opacity group-hover:opacity-10"></div>
+                  <div class="relative">
+                    <svg
+                      class="mb-4 w-12 h-12 text-zinc-700 dark:text-zinc-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <h3 class="mb-2 text-xl font-semibold">Meeting Agent</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      Prepare briefings and process meeting notes
+                    </p>
+                  </div>
+                  <div
+                    class="absolute right-4 top-4 rounded-full bg-zinc-100 dark:bg-zinc-700 px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-300 opacity-0 transition-opacity group-hover:opacity-100">
+                    Meeting
+                  </div>
+                </div>
+                <div
+                  class="group relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600 opacity-0 transition-opacity group-hover:opacity-10"></div>
+                  <div class="relative">
+                    <svg
+                      class="mb-4 w-12 h-12 text-zinc-700 dark:text-zinc-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <h3 class="mb-2 text-xl font-semibold">Meeting Workflow</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      End-to-end meeting management with notes
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="group relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-cyan-600 opacity-0 transition-opacity group-hover:opacity-10"></div>
+                  <div class="relative">
+                    <svg
+                      class="mb-4 w-12 h-12 text-zinc-700 dark:text-zinc-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <h3 class="mb-2 text-xl font-semibold">Meeting Prep</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      Prepare for upcoming meetings with briefings
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="group relative cursor-pointer overflow-hidden rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition-all hover:shadow-lg dark:border-zinc-700 dark:bg-zinc-800">
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-purple-500 to-purple-600 opacity-0 transition-opacity group-hover:opacity-10"></div>
+                  <div class="relative">
+                    <svg
+                      class="mb-4 w-12 h-12 text-zinc-700 dark:text-zinc-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                    </svg>
+                    <h3 class="mb-2 text-xl font-semibold">Direct LLM</h3>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      Chat directly with the AI model without agents
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══════ CHAT SESSION: ORCHESTRATOR ══════ -->
+          <div id="chat-session-orchestrator" class="content-page hidden h-full">
+            <div class="flex h-full flex-col">
+              <!-- Chat Header -->
+              <div class="flex items-center gap-3 border-b border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-6 py-3 shrink-0">
+                <button onclick="showContent('chat-content')" class="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-white">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="flex-1">
+                  <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Summarize project status</h2>
+                </div>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-width="2" d="M12 8v4l3 3"/></svg>
+                  Orchestrator
+                </span>
+              </div>
+              <!-- Messages -->
+              <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                <!-- User Message 1 -->
+                <div class="flex justify-end">
+                  <div class="max-w-[70%] rounded-2xl rounded-tr-sm bg-blue-600 px-4 py-3 text-white">
+                    <p class="text-sm">Summarize the CXP Platform project status for this week. Include email highlights, task progress, and upcoming meetings.</p>
+                    <p class="mt-1 text-xs text-blue-200">10:23 AM</p>
+                  </div>
+                </div>
+                <!-- Assistant Message 1 (Orchestrator) -->
+                <div class="flex justify-start">
+                  <div class="max-w-[80%]">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <div class="flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
+                        <svg class="h-4 w-4 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-width="2" d="M12 8v4l3 3"/></svg>
+                      </div>
+                      <span class="text-xs font-medium text-zinc-500 dark:text-zinc-400">Orchestrator</span>
+                    </div>
+                    <div class="rounded-2xl rounded-tl-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-4 py-3 text-sm text-zinc-800 dark:text-zinc-200 space-y-3">
+                      <p class="text-zinc-500 dark:text-zinc-400 italic text-xs">Analyzing your request... Delegating to Email Agent, Jira Agent, and Meeting Agent.</p>
+                      <div class="border-l-2 border-blue-400 pl-3">
+                        <p class="font-semibold text-blue-700 dark:text-blue-300 mb-1">CXP Platform - Weekly Status Summary</p>
+                        <p class="text-xs text-zinc-500">Feb 24 - Feb 26, 2026</p>
+                      </div>
+
+                      <div>
+                        <p class="font-semibold flex items-center gap-1.5 mb-1">
+                          <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-green-100 dark:bg-green-900"><svg class="h-3 w-3 text-green-600 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></span>
+                          Email Highlights
+                        </p>
+                        <ul class="ml-6 space-y-1 text-xs list-disc text-zinc-600 dark:text-zinc-400">
+                          <li><span class="text-red-600 dark:text-red-400 font-medium">Critical:</span> Security Audit Findings require immediate action (from security-team@company.com)</li>
+                          <li><span class="text-orange-600 dark:text-orange-400 font-medium">High:</span> Q1 Sprint Review action items pending from Sarah Kim</li>
+                          <li><span class="text-orange-600 dark:text-orange-400 font-medium">High:</span> Data Migration window confirmation needed for Mar 1st</li>
+                          <li>Infrastructure Cost Report for Feb 2026 received ($15,650 total)</li>
+                          <li>New feature request for Offline Mode from product team</li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <p class="font-semibold flex items-center gap-1.5 mb-1">
+                          <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-indigo-100 dark:bg-indigo-900"><svg class="h-3 w-3 text-indigo-600 dark:text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></span>
+                          Task Progress (Jira)
+                        </p>
+                        <div class="ml-6 text-xs space-y-1">
+                          <div class="flex items-center gap-2">
+                            <span class="w-16 text-zinc-500">Total:</span>
+                            <span class="font-medium">24 tasks</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <span class="w-16 text-zinc-500">Done:</span>
+                            <span class="text-green-600 dark:text-green-400 font-medium">8 completed</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <span class="w-16 text-zinc-500">In Progress:</span>
+                            <span class="text-blue-600 dark:text-blue-400 font-medium">10 active</span>
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <span class="w-16 text-zinc-500">Blocked:</span>
+                            <span class="text-red-600 dark:text-red-400 font-medium">2 blocked</span>
+                          </div>
+                          <div class="mt-1.5 text-zinc-600 dark:text-zinc-400">
+                            <p class="font-medium text-zinc-700 dark:text-zinc-300">Urgent tasks:</p>
+                            <ul class="list-disc ml-4 mt-0.5 space-y-0.5">
+                              <li><span class="font-mono text-indigo-600 dark:text-indigo-400">CXP-156</span> Fix dashboard loading performance (Critical)</li>
+                              <li><span class="font-mono text-indigo-600 dark:text-indigo-400">CXP-142</span> Implement OAuth2 token refresh flow (High)</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <p class="font-semibold flex items-center gap-1.5 mb-1">
+                          <span class="inline-flex items-center justify-center w-5 h-5 rounded bg-pink-100 dark:bg-pink-900"><svg class="h-3 w-3 text-pink-600 dark:text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></span>
+                          Upcoming Meetings
+                        </p>
+                        <ul class="ml-6 space-y-1 text-xs list-disc text-zinc-600 dark:text-zinc-400">
+                          <li><strong>Today 2:00 PM</strong> - Sprint Planning Q1 Week 9 (15 attendees)</li>
+                          <li><strong>Tomorrow 10:00 AM</strong> - Security Review Follow-up (5 attendees)</li>
+                          <li><strong>Thu 3:00 PM</strong> - Data Migration Go/No-Go Decision (8 attendees)</li>
+                        </ul>
+                      </div>
+
+                      <div class="border-t border-zinc-200 dark:border-zinc-700 pt-2 mt-2">
+                        <p class="font-semibold text-xs mb-1">Recommendations:</p>
+                        <ol class="list-decimal ml-4 text-xs text-zinc-600 dark:text-zinc-400 space-y-0.5">
+                          <li>Address the security audit findings before end of day</li>
+                          <li>Review and unblock CXP-156 and CXP-142 urgently</li>
+                          <li>Confirm the data migration window by Wednesday</li>
+                        </ol>
+                      </div>
+                    </div>
+                    <p class="mt-1 text-xs text-zinc-400 ml-9">10:23 AM</p>
+                  </div>
+                </div>
+                <!-- User Message 2 -->
+                <div class="flex justify-end">
+                  <div class="max-w-[70%] rounded-2xl rounded-tr-sm bg-blue-600 px-4 py-3 text-white">
+                    <p class="text-sm">What are the details on CXP-156? Who's assigned and what's the blocker?</p>
+                    <p class="mt-1 text-xs text-blue-200">10:25 AM</p>
+                  </div>
+                </div>
+                <!-- Assistant Message 2 (Orchestrator → Jira) -->
+                <div class="flex justify-start">
+                  <div class="max-w-[80%]">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <div class="flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
+                        <svg class="h-4 w-4 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-width="2" d="M12 8v4l3 3"/></svg>
+                      </div>
+                      <span class="text-xs font-medium text-zinc-500 dark:text-zinc-400">Orchestrator <span class="text-zinc-400 dark:text-zinc-500">via</span> Jira Agent</span>
+                    </div>
+                    <div class="rounded-2xl rounded-tl-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-4 py-3 text-sm text-zinc-800 dark:text-zinc-200 space-y-2">
+                      <div class="rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class="font-mono text-sm font-semibold text-indigo-600 dark:text-indigo-400">CXP-156</span>
+                          <span class="px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300">Critical</span>
+                          <span class="px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300">In Progress</span>
+                        </div>
+                        <p class="font-medium text-sm mb-2">Fix dashboard loading performance</p>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                          <div><span class="text-zinc-500">Assignee:</span> <span class="font-medium">Park Minjun</span></div>
+                          <div><span class="text-zinc-500">Reporter:</span> <span class="font-medium">Sarah Kim</span></div>
+                          <div><span class="text-zinc-500">Sprint:</span> <span class="font-medium">Q1 Sprint 9</span></div>
+                          <div><span class="text-zinc-500">Created:</span> <span class="font-medium">Feb 20, 2026</span></div>
+                        </div>
+                      </div>
+                      <div>
+                        <p class="text-xs font-semibold mb-1">Blocker Details:</p>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-400">The dashboard page makes 3 parallel API calls (<code class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-xs">fetchDashboardEmails</code>, <code class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-xs">fetchDashboardTasks</code>, <code class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-xs">fetchDashboardMeetings</code>) but the MongoDB queries are not properly indexed, causing 5+ second load times. Waiting for DBA team to add compound indexes on the <code class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-xs">synced_emails</code> and <code class="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-xs">jira_tasks</code> collections.</p>
+                      </div>
+                      <p class="text-xs text-zinc-500">The DBA team confirmed they will deploy indexes by tomorrow morning. This should reduce load time to under 500ms.</p>
+                    </div>
+                    <p class="mt-1 text-xs text-zinc-400 ml-9">10:25 AM</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Input Area -->
+              <div class="border-t border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-4 shrink-0">
+                <div class="flex items-end gap-3 max-w-4xl mx-auto">
+                  <div class="flex-1 rounded-xl border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 px-4 py-3">
+                    <textarea rows="1" placeholder="Type your message..." class="w-full resize-none bg-transparent text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none"></textarea>
+                  </div>
+                  <button class="shrink-0 rounded-xl bg-blue-600 p-3 text-white hover:bg-blue-700 transition-colors">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══════ CHAT SESSION: JIRA ══════ -->
+          <div id="chat-session-jira" class="content-page hidden h-full">
+            <div class="flex h-full flex-col">
+              <!-- Chat Header -->
+              <div class="flex items-center gap-3 border-b border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-6 py-3 shrink-0">
+                <button onclick="showContent('chat-content')" class="rounded-md p-1.5 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-white">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <div class="flex-1">
+                  <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Create login bug ticket</h2>
+                </div>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300">
+                  <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                  Jira
+                </span>
+              </div>
+              <!-- Messages -->
+              <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                <!-- User Message 1 -->
+                <div class="flex justify-end">
+                  <div class="max-w-[70%] rounded-2xl rounded-tr-sm bg-blue-600 px-4 py-3 text-white">
+                    <p class="text-sm">Create a bug ticket: The login page has a timeout issue when users try to login with SSO. The page hangs for 30+ seconds then shows a generic error. Priority should be High.</p>
+                    <p class="mt-1 text-xs text-blue-200">2:15 PM</p>
+                  </div>
+                </div>
+                <!-- Assistant Message 1 (Jira Agent) -->
+                <div class="flex justify-start">
+                  <div class="max-w-[80%]">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <div class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900">
+                        <svg class="h-4 w-4 text-indigo-600 dark:text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                      </div>
+                      <span class="text-xs font-medium text-zinc-500 dark:text-zinc-400">Jira Agent</span>
+                    </div>
+                    <div class="rounded-2xl rounded-tl-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-4 py-3 text-sm text-zinc-800 dark:text-zinc-200 space-y-3">
+                      <p>I've created the bug ticket. Here are the details:</p>
+                      <div class="rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">
+                            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            Created
+                          </span>
+                        </div>
+                        <div class="space-y-2">
+                          <div class="flex items-center gap-2">
+                            <span class="font-mono text-sm font-bold text-indigo-600 dark:text-indigo-400">CXP-189</span>
+                            <span class="px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300">Bug</span>
+                            <span class="px-2 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300">High</span>
+                          </div>
+                          <p class="font-medium">SSO Login Timeout - Page hangs for 30+ seconds</p>
+                          <div class="text-xs space-y-1 text-zinc-600 dark:text-zinc-400">
+                            <p><strong>Description:</strong> Users report that the login page hangs for 30+ seconds when attempting SSO authentication, then displays a generic error message. This affects all SSO-enabled accounts.</p>
+                            <div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-2">
+                              <div><span class="text-zinc-500">Type:</span> <span class="font-medium">Bug</span></div>
+                              <div><span class="text-zinc-500">Priority:</span> <span class="font-medium text-orange-600 dark:text-orange-400">High</span></div>
+                              <div><span class="text-zinc-500">Project:</span> <span class="font-medium">CXP Platform</span></div>
+                              <div><span class="text-zinc-500">Status:</span> <span class="font-medium">Open</span></div>
+                              <div><span class="text-zinc-500">Reporter:</span> <span class="font-medium">Demo User</span></div>
+                              <div><span class="text-zinc-500">Assignee:</span> <span class="font-medium text-zinc-400">Unassigned</span></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="text-xs text-zinc-500 dark:text-zinc-400">Would you like me to assign this to someone or add it to a sprint?</p>
+                    </div>
+                    <p class="mt-1 text-xs text-zinc-400 ml-9">2:15 PM</p>
+                  </div>
+                </div>
+                <!-- User Message 2 -->
+                <div class="flex justify-end">
+                  <div class="max-w-[70%] rounded-2xl rounded-tr-sm bg-blue-600 px-4 py-3 text-white">
+                    <p class="text-sm">Yes, assign it to Sarah Kim and add it to the current sprint. Also add labels "sso" and "authentication".</p>
+                    <p class="mt-1 text-xs text-blue-200">2:16 PM</p>
+                  </div>
+                </div>
+                <!-- Assistant Message 2 -->
+                <div class="flex justify-start">
+                  <div class="max-w-[80%]">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <div class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900">
+                        <svg class="h-4 w-4 text-indigo-600 dark:text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                      </div>
+                      <span class="text-xs font-medium text-zinc-500 dark:text-zinc-400">Jira Agent</span>
+                    </div>
+                    <div class="rounded-2xl rounded-tl-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-4 py-3 text-sm text-zinc-800 dark:text-zinc-200 space-y-3">
+                      <p>Done! I've updated <span class="font-mono font-semibold text-indigo-600 dark:text-indigo-400">CXP-189</span> with the following changes:</p>
+                      <div class="space-y-2 text-xs">
+                        <div class="flex items-center gap-2">
+                          <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                          <span><strong>Assignee</strong> updated to <span class="font-medium">Sarah Kim</span></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                          <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                          <span><strong>Sprint</strong> set to <span class="font-medium">Q1 Sprint 9</span> (current)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                          <svg class="h-4 w-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                          <span><strong>Labels</strong> added: <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-xs font-medium">sso</span> <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-900 text-xs font-medium">authentication</span></span>
+                        </div>
+                      </div>
+                      <div class="rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-3">
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class="font-mono text-sm font-bold text-indigo-600 dark:text-indigo-400">CXP-189</span>
+                          <span class="px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300">Bug</span>
+                          <span class="px-2 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300">High</span>
+                        </div>
+                        <p class="font-medium text-sm mb-1">SSO Login Timeout - Page hangs for 30+ seconds</p>
+                        <div class="grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-zinc-600 dark:text-zinc-400">
+                          <div><span class="text-zinc-500">Assignee:</span> <span class="font-medium text-zinc-800 dark:text-zinc-200">Sarah Kim</span></div>
+                          <div><span class="text-zinc-500">Sprint:</span> <span class="font-medium text-zinc-800 dark:text-zinc-200">Q1 Sprint 9</span></div>
+                          <div><span class="text-zinc-500">Labels:</span> <span class="font-medium text-zinc-800 dark:text-zinc-200">sso, authentication</span></div>
+                          <div><span class="text-zinc-500">Status:</span> <span class="font-medium text-zinc-800 dark:text-zinc-200">Open</span></div>
+                        </div>
+                      </div>
+                      <p class="text-xs text-zinc-500 dark:text-zinc-400">Sarah will be notified about this assignment. Is there anything else you'd like to do with this ticket?</p>
+                    </div>
+                    <p class="mt-1 text-xs text-zinc-400 ml-9">2:16 PM</p>
+                  </div>
+                </div>
+                <!-- User Message 3 -->
+                <div class="flex justify-end">
+                  <div class="max-w-[70%] rounded-2xl rounded-tr-sm bg-blue-600 px-4 py-3 text-white">
+                    <p class="text-sm">Show me all open bugs in the current sprint with High priority or above.</p>
+                    <p class="mt-1 text-xs text-blue-200">2:18 PM</p>
+                  </div>
+                </div>
+                <!-- Assistant Message 3 -->
+                <div class="flex justify-start">
+                  <div class="max-w-[80%]">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <div class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900">
+                        <svg class="h-4 w-4 text-indigo-600 dark:text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                      </div>
+                      <span class="text-xs font-medium text-zinc-500 dark:text-zinc-400">Jira Agent</span>
+                    </div>
+                    <div class="rounded-2xl rounded-tl-sm bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 px-4 py-3 text-sm text-zinc-800 dark:text-zinc-200 space-y-3">
+                      <p>Found <strong>4 open bugs</strong> with High+ priority in Q1 Sprint 9:</p>
+                      <div class="space-y-2">
+                        <!-- Bug 1 -->
+                        <div class="rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-2.5">
+                          <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400">CXP-156</span>
+                            <span class="px-1.5 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300">Critical</span>
+                            <span class="text-xs font-medium flex-1">Fix dashboard loading performance</span>
+                            <span class="text-xs text-zinc-500">Park Minjun</span>
+                          </div>
+                        </div>
+                        <!-- Bug 2 -->
+                        <div class="rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-2.5">
+                          <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400">CXP-189</span>
+                            <span class="px-1.5 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300">High</span>
+                            <span class="text-xs font-medium flex-1">SSO Login Timeout</span>
+                            <span class="text-xs text-zinc-500">Sarah Kim</span>
+                          </div>
+                        </div>
+                        <!-- Bug 3 -->
+                        <div class="rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-2.5">
+                          <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400">CXP-142</span>
+                            <span class="px-1.5 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300">High</span>
+                            <span class="text-xs font-medium flex-1">OAuth2 token refresh flow broken</span>
+                            <span class="text-xs text-zinc-500">Lee Jiwon</span>
+                          </div>
+                        </div>
+                        <!-- Bug 4 -->
+                        <div class="rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 p-2.5">
+                          <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-xs font-bold text-indigo-600 dark:text-indigo-400">CXP-178</span>
+                            <span class="px-1.5 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300">High</span>
+                            <span class="text-xs font-medium flex-1">Email sync fails for shared mailboxes</span>
+                            <span class="text-xs text-zinc-500">Kim Sujin</span>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="text-xs text-zinc-500 dark:text-zinc-400">Total: 4 bugs (1 Critical, 3 High). Would you like to see details on any of these?</p>
+                    </div>
+                    <p class="mt-1 text-xs text-zinc-400 ml-9">2:18 PM</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Input Area -->
+              <div class="border-t border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 p-4 shrink-0">
+                <div class="flex items-end gap-3 max-w-4xl mx-auto">
+                  <div class="flex-1 rounded-xl border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-900 px-4 py-3">
+                    <textarea rows="1" placeholder="Type your message..." class="w-full resize-none bg-transparent text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none"></textarea>
+                  </div>
+                  <button class="shrink-0 rounded-xl bg-blue-600 p-3 text-white hover:bg-blue-700 transition-colors">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══════ ANALYTICS CONTENT ══════ -->
+          <div id="analytics-content" class="content-page hidden">
+            <div
+              class="border-b border-zinc-200 bg-white px-6 py-4 dark:border-zinc-700 dark:bg-zinc-800">
+              <div class="mx-auto max-w-[1920px]">
+                <div
+                  class="rounded-lg border border-blue-200 bg-blue-50 p-3 mb-4 dark:border-blue-900 dark:bg-blue-950">
+                  <p class="text-sm text-blue-800 dark:text-blue-200">
+                    <strong>Demo Mode:</strong> Using dummy data for
+                    demonstration purposes.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h1 class="mb-2 text-3xl font-bold">Analytics</h1>
+                    <p class="text-zinc-600 dark:text-zinc-400">
+                      Monthly comparison and performance metrics
+                    </p>
+                  </div>
+                  <button
+                    class="flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-700 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-700">
+                    <svg
+                      class="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Refresh
+                  </button>
+                </div>
+                <div
+                  class="mt-4 flex gap-2 border-b border-zinc-200 dark:border-zinc-700">
+                  <button
+                    class="px-4 py-2 text-sm font-medium border-b-2 border-blue-600 text-blue-600">
+                    Monthly
+                  </button>
+                  <button
+                    class="px-4 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900">
+                    Workplace
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 mx-auto max-w-[1920px] space-y-6">
+              <!-- Metric Cards -->
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div
+                  class="rounded-lg border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 p-6 shadow">
+                  <p
+                    class="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                    Total Projects
+                  </p>
+                  <div class="mt-2 flex items-baseline justify-between">
+                    <p class="text-3xl font-semibold">12</p>
+                    <span class="text-sm font-medium text-green-600"
+                      >+8.3%</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="rounded-lg border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 p-6 shadow">
+                  <p
+                    class="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                    Active Sessions
+                  </p>
+                  <div class="mt-2 flex items-baseline justify-between">
+                    <p class="text-3xl font-semibold">1,247</p>
+                    <span class="text-sm font-medium text-green-600"
+                      >+12.5%</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="rounded-lg border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 p-6 shadow">
+                  <p
+                    class="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                    AI Requests
+                  </p>
+                  <div class="mt-2 flex items-baseline justify-between">
+                    <p class="text-3xl font-semibold">8,432</p>
+                    <span class="text-sm font-medium text-green-600"
+                      >+23.1%</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Chart Placeholders -->
+              <div
+                class="rounded-lg border border-zinc-200 bg-white p-6 shadow dark:border-zinc-700 dark:bg-zinc-800">
+                <h2 class="mb-4 text-lg font-semibold">
+                  Weekly Trend - Total Projects
+                </h2>
+                <div class="h-64 flex items-end justify-around gap-2 px-4">
+                  <div class="flex flex-col items-center gap-1">
+                    <div
+                      class="w-12 bg-blue-500 rounded-t"
+                      style="height: 80px"></div>
+                    <span class="text-xs text-zinc-500">W1</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1">
+                    <div
+                      class="w-12 bg-blue-500 rounded-t"
+                      style="height: 120px"></div>
+                    <span class="text-xs text-zinc-500">W2</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1">
+                    <div
+                      class="w-12 bg-blue-500 rounded-t"
+                      style="height: 100px"></div>
+                    <span class="text-xs text-zinc-500">W3</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1">
+                    <div
+                      class="w-12 bg-blue-600 rounded-t"
+                      style="height: 160px"></div>
+                    <span class="text-xs text-zinc-500">W4</span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="rounded-lg border border-zinc-200 bg-white p-6 shadow dark:border-zinc-700 dark:bg-zinc-800">
+                <h2 class="mb-4 text-lg font-semibold">
+                  Weekly Trend - Active Sessions
+                </h2>
+                <div class="h-64 flex items-end justify-around gap-2 px-4">
+                  <div class="flex flex-col items-center gap-1">
+                    <div
+                      class="w-12 bg-purple-500 rounded-t"
+                      style="height: 100px"></div>
+                    <span class="text-xs text-zinc-500">W1</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1">
+                    <div
+                      class="w-12 bg-purple-500 rounded-t"
+                      style="height: 130px"></div>
+                    <span class="text-xs text-zinc-500">W2</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1">
+                    <div
+                      class="w-12 bg-purple-500 rounded-t"
+                      style="height: 150px"></div>
+                    <span class="text-xs text-zinc-500">W3</span>
+                  </div>
+                  <div class="flex flex-col items-center gap-1">
+                    <div
+                      class="w-12 bg-purple-600 rounded-t"
+                      style="height: 180px"></div>
+                    <span class="text-xs text-zinc-500">W4</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══════ WORKPLACE CONTENT ══════ -->
+          <div id="workplace-content" class="content-page hidden">
+            <div class="mx-auto max-w-[1400px] p-6">
+              <div class="mb-6">
+                <h1 class="text-3xl font-bold">Workplace</h1>
+                <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+                  Manage all your work items in one place
+                </p>
+              </div>
+              <!-- Tabs -->
+              <div
+                class="mb-4 flex gap-2 border-b border-zinc-200 dark:border-zinc-700">
+                <button
+                  class="flex items-center gap-2 px-4 py-2 font-medium border-b-2 border-blue-600 text-blue-600">
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  Email
+                </button>
+                <button
+                  class="flex items-center gap-2 px-4 py-2 font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900">
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                  Task
+                </button>
+                <button
+                  class="flex items-center gap-2 px-4 py-2 font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900">
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Meeting
+                </button>
+              </div>
+              <!-- Add Button -->
+              <div class="mb-4">
+                <button
+                  class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 4v16m8-8H4" />
+                  </svg>
+                  Add Email
+                </button>
+              </div>
+              <!-- Search -->
+              <div class="mb-6 flex flex-wrap gap-4">
+                <div class="flex-1 min-w-[300px]">
+                  <div class="flex gap-2">
+                    <div class="relative flex-1">
+                      <svg
+                        class="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <path stroke-linecap="round" d="m21 21-4.35-4.35" />
+                      </svg>
+                      <input
+                        type="text"
+                        placeholder="Search workplace items..."
+                        class="w-full rounded-lg border border-zinc-300 bg-white py-2 pl-10 pr-4 text-zinc-900 placeholder-zinc-400 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100" />
+                    </div>
+                    <button
+                      class="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700">
+                      Search
+                    </button>
+                  </div>
+                </div>
+                <select
+                  class="rounded-lg border border-zinc-300 bg-white py-2 px-3 text-zinc-900 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100">
+                  <option>10 per page</option>
+                  <option>20 per page</option>
+                  <option>30 per page</option>
+                </select>
+              </div>
+              <!-- Table -->
+              <div
+                class="overflow-hidden rounded-lg border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800">
+                <table class="w-full">
+                  <thead class="bg-zinc-50 dark:bg-zinc-900">
+                    <tr>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                        Type
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                        Title
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                        Author
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                        Status
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500">
+                        Date
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
+                    <tr
+                      class="hover:bg-zinc-50 dark:hover:bg-zinc-700/50 cursor-pointer">
+                      <td class="px-6 py-4">
+                        <span
+                          class="flex items-center gap-2 text-sm font-medium text-blue-600"
+                          ><svg
+                            class="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg
+                          >Email</span
+                        >
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="font-medium">Security Audit Findings</div>
+                        <div class="mt-1 text-sm text-zinc-500 line-clamp-1">
+                          3 critical vulnerabilities identified...
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">
+                        security-team
+                      </td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="rounded-full bg-blue-100 dark:bg-blue-900 px-2 py-1 text-xs font-semibold text-blue-800 dark:text-blue-200"
+                          >Unread</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">
+                        Feb 26, 2026
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-zinc-50 dark:hover:bg-zinc-700/50 cursor-pointer">
+                      <td class="px-6 py-4">
+                        <span
+                          class="flex items-center gap-2 text-sm font-medium text-blue-600"
+                          ><svg
+                            class="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg
+                          >Email</span
+                        >
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="font-medium">
+                          Q1 Sprint Review - Action Items
+                        </div>
+                        <div class="mt-1 text-sm text-zinc-500 line-clamp-1">
+                          Please review the attached sprint summary...
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">sarah.kim</td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="rounded-full bg-amber-100 dark:bg-amber-900 px-2 py-1 text-xs font-semibold text-amber-800 dark:text-amber-200"
+                          >Needs Reply</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">
+                        Feb 26, 2026
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-zinc-50 dark:hover:bg-zinc-700/50 cursor-pointer">
+                      <td class="px-6 py-4">
+                        <span
+                          class="flex items-center gap-2 text-sm font-medium text-blue-600"
+                          ><svg
+                            class="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg
+                          >Email</span
+                        >
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="font-medium">Data Migration Schedule</div>
+                        <div class="mt-1 text-sm text-zinc-500 line-clamp-1">
+                          Please confirm the migration window...
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">dba-team</td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="rounded-full bg-blue-100 dark:bg-blue-900 px-2 py-1 text-xs font-semibold text-blue-800 dark:text-blue-200"
+                          >Unread</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">
+                        Feb 25, 2026
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-zinc-50 dark:hover:bg-zinc-700/50 cursor-pointer">
+                      <td class="px-6 py-4">
+                        <span
+                          class="flex items-center gap-2 text-sm font-medium text-blue-600"
+                          ><svg
+                            class="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg
+                          >Email</span
+                        >
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="font-medium">
+                          Infrastructure Cost Report
+                        </div>
+                        <div class="mt-1 text-sm text-zinc-500 line-clamp-1">
+                          Monthly cost breakdown: Azure $12,450...
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">cloud-ops</td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="rounded-full bg-gray-100 dark:bg-gray-700 px-2 py-1 text-xs font-semibold text-gray-800 dark:text-gray-200"
+                          >Read</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">
+                        Feb 25, 2026
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-zinc-50 dark:hover:bg-zinc-700/50 cursor-pointer">
+                      <td class="px-6 py-4">
+                        <span
+                          class="flex items-center gap-2 text-sm font-medium text-blue-600"
+                          ><svg
+                            class="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg
+                          >Email</span
+                        >
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="font-medium">
+                          New Feature Request: Offline Mode
+                        </div>
+                        <div class="mt-1 text-sm text-zinc-500 line-clamp-1">
+                          Based on customer feedback...
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">product</td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="rounded-full bg-green-100 dark:bg-green-900 px-2 py-1 text-xs font-semibold text-green-800 dark:text-green-200"
+                          >Replied</span
+                        >
+                      </td>
+                      <td class="px-6 py-4 text-sm text-zinc-500">
+                        Feb 24, 2026
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Pagination -->
+              <div class="mt-6 flex items-center justify-center gap-2">
+                <button
+                  class="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-700 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 opacity-50 cursor-not-allowed">
+                  Previous
+                </button>
+                <button
+                  class="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white">
+                  1
+                </button>
+                <button
+                  class="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-700 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 hover:bg-zinc-50">
+                  2
+                </button>
+                <button
+                  class="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm font-medium text-zinc-700 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 hover:bg-zinc-50">
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══════ SETTINGS CONTENT ══════ -->
+          <div id="settings-content" class="content-page hidden p-6">
+            <div class="space-y-6">
+              <div>
+                <h1 class="text-2xl font-bold">Admin Settings</h1>
+                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  System administration and configuration
+                </p>
+              </div>
+              <div class="grid grid-cols-1 gap-6 lg:grid-cols-4">
+                <!-- Sidebar tabs -->
+                <div class="lg:col-span-1">
+                  <nav class="space-y-1">
+                    <button
+                      class="flex w-full items-center rounded-lg px-4 py-3 text-left text-sm font-medium bg-blue-600/10 text-blue-600">
+                      <svg
+                        class="mr-3 w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                      </svg>
+                      Projects
+                    </button>
+                    <button
+                      class="flex w-full items-center rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                      <svg
+                        class="mr-3 w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                      </svg>
+                      Users
+                    </button>
+                    <button
+                      class="flex w-full items-center rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                      <svg
+                        class="mr-3 w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      LLM Providers
+                    </button>
+                    <button
+                      class="flex w-full items-center rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                      <svg
+                        class="mr-3 w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                      </svg>
+                      Jira Integration
+                    </button>
+                    <button
+                      class="flex w-full items-center rounded-lg px-4 py-3 text-left text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800">
+                      <svg
+                        class="mr-3 w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      Email (EWS)
+                    </button>
+                  </nav>
+                </div>
+                <!-- Content -->
+                <div class="lg:col-span-3">
+                  <div class="rounded-lg bg-white dark:bg-zinc-800 p-6 shadow">
+                    <h2 class="text-lg font-semibold mb-4">
+                      Project Management
+                    </h2>
+                    <div class="mb-4 flex justify-between items-center">
+                      <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                        Manage your projects and their configurations
+                      </p>
+                      <button
+                        class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+                        + New Project
+                      </button>
+                    </div>
+                    <div class="space-y-3">
+                      <div
+                        class="flex items-center justify-between rounded-lg border border-zinc-200 dark:border-zinc-700 p-4">
+                        <div>
+                          <h3 class="font-medium">CXP Platform</h3>
+                          <p class="text-sm text-zinc-500">
+                            Customer Experience Platform - Main Project
+                          </p>
+                          <p class="text-xs text-zinc-400 mt-1">
+                            Jira Key: CXP | Created: Jan 15, 2025
+                          </p>
+                        </div>
+                        <div class="flex gap-2">
+                          <button
+                            class="rounded px-3 py-1.5 text-sm text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-700">
+                            Edit
+                          </button>
+                          <button
+                            class="rounded px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        class="flex items-center justify-between rounded-lg border border-zinc-200 dark:border-zinc-700 p-4">
+                        <div>
+                          <h3 class="font-medium">Mobile App</h3>
+                          <p class="text-sm text-zinc-500">
+                            CXP Mobile Application
+                          </p>
+                          <p class="text-xs text-zinc-400 mt-1">
+                            Jira Key: MOB | Created: Jun 1, 2025
+                          </p>
+                        </div>
+                        <div class="flex gap-2">
+                          <button
+                            class="rounded px-3 py-1.5 text-sm text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-700">
+                            Edit
+                          </button>
+                          <button
+                            class="rounded px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        class="flex items-center justify-between rounded-lg border border-zinc-200 dark:border-zinc-700 p-4">
+                        <div>
+                          <h3 class="font-medium">Data Pipeline</h3>
+                          <p class="text-sm text-zinc-500">
+                            ETL and Data Processing Pipeline
+                          </p>
+                          <p class="text-xs text-zinc-400 mt-1">
+                            Jira Key: DATA | Created: Sep 10, 2025
+                          </p>
+                        </div>
+                        <div class="flex gap-2">
+                          <button
+                            class="rounded px-3 py-1.5 text-sm text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-700">
+                            Edit
+                          </button>
+                          <button
+                            class="rounded px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══════ PROFILE CONTENT ══════ -->
+          <div id="profile-content" class="content-page hidden p-6">
+            <div class="space-y-6 max-w-2xl">
+              <div>
+                <h1 class="text-2xl font-bold">Profile Settings</h1>
+                <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  Manage your personal preferences
+                </p>
+              </div>
+              <!-- Theme -->
+              <div class="rounded-lg bg-white dark:bg-zinc-800 p-6 shadow">
+                <div class="mb-4 flex items-center">
+                  <div class="rounded-lg bg-blue-100 dark:bg-blue-900/30 p-2">
+                    <svg
+                      class="h-5 w-5 text-blue-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="5" />
+                      <path
+                        stroke-linecap="round"
+                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h2 class="text-lg font-semibold">Theme</h2>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      Choose your preferred appearance
+                    </p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <button
+                    class="flex flex-col items-center justify-center rounded-lg border-2 border-blue-600 bg-blue-50 dark:bg-blue-900/30 p-4">
+                    <svg
+                      class="mb-2 h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="5" />
+                      <path
+                        stroke-linecap="round"
+                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2" />
+                    </svg>
+                    <span class="text-sm font-medium">Light</span>
+                  </button>
+                  <button
+                    class="flex flex-col items-center justify-center rounded-lg border-2 border-zinc-200 dark:border-zinc-700 p-4 hover:border-zinc-300">
+                    <svg
+                      class="mb-2 h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <span class="text-sm font-medium">Dark</span>
+                  </button>
+                </div>
+              </div>
+              <!-- Language & Timezone -->
+              <div class="rounded-lg bg-white dark:bg-zinc-800 p-6 shadow">
+                <div class="mb-4 flex items-center">
+                  <div class="rounded-lg bg-green-100 dark:bg-green-900/30 p-2">
+                    <svg
+                      class="h-5 w-5 text-green-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h2 class="text-lg font-semibold">Language & Region</h2>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      Set your preferred language and timezone
+                    </p>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <div>
+                    <label
+                      class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                      >Language</label
+                    >
+                    <select
+                      class="mt-1 block w-full rounded-md border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-3 py-2 text-zinc-900 dark:text-zinc-100">
+                      <option value="en" selected>English</option>
+                      <option value="ko">Korean</option>
+                      <option value="ar">Arabic</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                      >Timezone</label
+                    >
+                    <select
+                      class="mt-1 block w-full rounded-md border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 px-3 py-2 text-zinc-900 dark:text-zinc-100">
+                      <option>America/New_York (EST)</option>
+                      <option>Asia/Dubai (GST)</option>
+                      <option selected>Asia/Seoul (KST)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- Account Info -->
+              <div class="rounded-lg bg-white dark:bg-zinc-800 p-6 shadow">
+                <div class="mb-4 flex items-center">
+                  <div class="rounded-lg bg-zinc-100 dark:bg-zinc-700 p-2">
+                    <svg
+                      class="h-5 w-5 text-zinc-600 dark:text-zinc-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <h2 class="text-lg font-semibold">Account Information</h2>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-400">
+                      Your account details (read-only)
+                    </p>
+                  </div>
+                </div>
+                <div class="space-y-3 text-sm">
+                  <div class="flex justify-between">
+                    <span class="text-zinc-600 dark:text-zinc-400">User ID</span
+                    ><span class="font-medium">mock-user-001</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-zinc-600 dark:text-zinc-400">Email</span
+                    ><span class="font-medium">demo@cxp.com</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-zinc-600 dark:text-zinc-400"
+                      >Username</span
+                    ><span class="font-medium">Demo User</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-zinc-600 dark:text-zinc-400">Role</span
+                    ><span class="font-medium">Admin</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-zinc-600 dark:text-zinc-400">Created</span
+                    ><span class="font-medium">Jan 1, 2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- JAVASCRIPT                             -->
+    <!-- ═══════════════════════════════════════ -->
+    <script>
+      // Page navigation (login/register vs app)
+      function navigateTo(page) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        const target = document.getElementById("page-" + page);
+        if (target) target.classList.add("active");
+        // If navigating to dashboard, also show dashboard content
+        if (page === "dashboard") showContent("dashboard-content");
+      }
+
+      // Content switching within app shell
+      function showContent(contentId) {
+        // Hide all content pages
+        document
+          .querySelectorAll(".content-page")
+          .forEach((p) => p.classList.add("hidden"));
+        // Show target
+        const target = document.getElementById(contentId);
+        if (target) target.classList.remove("hidden");
+        // Update nav active state
+        const navItems = document.querySelectorAll("#sidebar-nav .nav-item");
+        navItems.forEach((item) => item.classList.remove("active"));
+        // Clear session active state
+        document.querySelectorAll(".session-item").forEach((s) => {
+          s.classList.remove("bg-blue-600", "!text-white");
+          s.classList.add("text-zinc-600", "dark:text-zinc-400");
+        });
+        // Find the nav item that matches
+        const nameMap = {
+          "dashboard-content": "Dashboard",
+          "chat-content": "Chat",
+          "chat-session-orchestrator": "Chat",
+          "chat-session-jira": "Chat",
+          "analytics-content": "Analytics",
+          "workplace-content": "Workplace",
+          "settings-content": "Settings",
+          "profile-content": "Profile",
+        };
+        navItems.forEach((item) => {
+          const text = item.querySelector(".sidebar-text");
+          if (text && text.textContent === nameMap[contentId]) {
+            item.classList.add("active");
+          }
+        });
+        // Update breadcrumb
+        document.getElementById("header-breadcrumb").textContent =
+          nameMap[contentId] || "Dashboard";
+      }
+
+      // Show chat session conversation
+      function showChatSession(sessionType) {
+        const contentId = "chat-session-" + sessionType;
+        showContent(contentId);
+        // Highlight active session in sidebar
+        document.querySelectorAll(".session-item").forEach((s) => {
+          s.classList.remove("bg-blue-600", "!text-white");
+          s.classList.add("text-zinc-600", "dark:text-zinc-400");
+        });
+        const activeSession = document.querySelector('.session-item[data-session="' + sessionType + '"]');
+        if (activeSession) {
+          activeSession.classList.add("bg-blue-600", "!text-white");
+          activeSession.classList.remove("text-zinc-600", "dark:text-zinc-400");
+        }
+      }
+
+      // Sidebar collapse
+      let sidebarCollapsed = false;
+      function toggleSidebar() {
+        sidebarCollapsed = !sidebarCollapsed;
+        const sidebar = document.getElementById("sidebar");
+        const texts = document.querySelectorAll(".sidebar-text");
+        const title = document.getElementById("sidebar-title");
+        const projectSelector = document.getElementById("project-selector");
+        const sessions = document.getElementById("sidebar-sessions");
+        if (sidebarCollapsed) {
+          sidebar.classList.remove("w-64");
+          sidebar.classList.add("w-16");
+          texts.forEach((t) => {
+            t.style.display = "none";
+          });
+          title.style.display = "none";
+          if (projectSelector)
+            projectSelector.parentElement.style.display = "none";
+          if (sessions) sessions.style.display = "none";
+        } else {
+          sidebar.classList.remove("w-16");
+          sidebar.classList.add("w-64");
+          texts.forEach((t) => {
+            t.style.display = "";
+          });
+          title.style.display = "";
+          if (projectSelector) projectSelector.parentElement.style.display = "";
+          if (sessions) sessions.style.display = "";
+        }
+      }
+
+      // Dark mode toggle
+      function toggleDarkMode() {
+        document.documentElement.classList.toggle("dark");
+      }
+    </script>
+  </body>
+</html>
