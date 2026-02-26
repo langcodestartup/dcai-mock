@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Theme Preview — #FFBF4F</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  [data-theme="light"] {
+    --primary: #FFBF4F;
+    --primary-hover: #E5A842;
+    --primary-light: #FFCE73;
+    --primary-subtle: rgba(255, 191, 79, 0.12);
+    --bg: #FAFAFA;
+    --bg-alt: #FFFFFF;
+    --surface: #F0F2F5;
+    --surface-hover: #E8EAED;
+    --text-primary: #212529;
+    --text-secondary: #6C757D;
+    --accent: #34495E;
+    --border: rgba(0, 0, 0, 0.08);
+    --shadow: rgba(0, 0, 0, 0.06);
+    --shadow-lg: rgba(0, 0, 0, 0.1);
+    --code-bg: #F0F2F5;
+    --badge-bg: rgba(52, 73, 94, 0.08);
+    --toggle-bg: #E0E0E0;
+  }
+
+  [data-theme="dark"] {
+    --primary: #FFBF4F;
+    --primary-hover: #E5A842;
+    --primary-light: #FFCE73;
+    --primary-subtle: rgba(255, 191, 79, 0.1);
+    --bg: #121212;
+    --bg-alt: #1A1A1A;
+    --surface: #1E1E1E;
+    --surface-hover: #2A2A2A;
+    --text-primary: #E1E2E3;
+    --text-secondary: #9E9E9E;
+    --accent: #2C3E50;
+    --border: rgba(255, 255, 255, 0.06);
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-lg: rgba(0, 0, 0, 0.5);
+    --code-bg: #2A2A2A;
+    --badge-bg: rgba(44, 62, 80, 0.4);
+    --toggle-bg: #333;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    transition: background var(--transition), color var(--transition);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ─── Top Navigation ─── */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    transition: background var(--transition), border-color var(--transition);
+  }
+
+  .navbar-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #212529;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+  .nav-links a.active { color: var(--primary); }
+
+  /* ─── Theme Toggle ─── */
+  .theme-toggle {
+    width: 52px;
+    height: 28px;
+    background: var(--toggle-bg);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    position: relative;
+    transition: background var(--transition);
+    flex-shrink: 0;
+  }
+
+  .theme-toggle::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: var(--primary);
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: transform var(--transition);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+
+  [data-theme="dark"] .theme-toggle::after {
+    transform: translateX(24px);
+  }
+
+  .theme-toggle-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    transition: opacity 0.3s;
+    z-index: 1;
+  }
+
+  .theme-toggle-icon.sun { left: 6px; }
+  .theme-toggle-icon.moon { right: 6px; }
+
+  [data-theme="light"] .theme-toggle-icon.sun { opacity: 0; }
+  [data-theme="light"] .theme-toggle-icon.moon { opacity: 0.5; }
+  [data-theme="dark"] .theme-toggle-icon.sun { opacity: 0.5; }
+  [data-theme="dark"] .theme-toggle-icon.moon { opacity: 0; }
+
+  /* ─── Hero Section ─── */
+  .hero {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 80px 24px 64px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: var(--primary-subtle);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-hover);
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--primary);
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    max-width: 640px;
+    letter-spacing: -0.02em;
+    transition: color var(--transition);
+  }
+
+  .hero h1 .highlight {
+    color: var(--primary);
+    position: relative;
+  }
+
+  .hero p {
+    font-size: 1.12rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    transition: color var(--transition);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* ─── Buttons ─── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: #212529;
+    box-shadow: 0 2px 8px rgba(255, 191, 79, 0.25);
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 4px 16px rgba(255, 191, 79, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+  }
+
+  .btn-secondary:hover {
+    background: var(--surface-hover);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 12px 16px;
+  }
+
+  .btn-ghost:hover { color: var(--primary); }
+
+  .btn-sm {
+    padding: 8px 18px;
+    font-size: 0.82rem;
+    border-radius: 8px;
+  }
+
+  /* ─── Section Title ─── */
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    transition: color var(--transition);
+  }
+
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    max-width: 480px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+    transition: color var(--transition);
+  }
+
+  /* ─── Feature Cards ─── */
+  .features {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .feature-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s ease, background var(--transition), border-color var(--transition);
+  }
+
+  .feature-card:hover {
+    box-shadow: 0 8px 32px var(--shadow-lg);
+    transform: translateY(-3px);
+    border-color: var(--primary);
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--primary-subtle);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    transition: background var(--transition);
+  }
+
+  .feature-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .feature-card p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    transition: color var(--transition);
+  }
+
+  /* ─── Stats Bar ─── */
+  .stats-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition), border-color var(--transition);
+  }
+
+  .stats-grid {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color var(--transition);
+  }
+
+  /* ─── Dashboard Preview ─── */
+  .dashboard-section {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .dashboard-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: background var(--transition), border-color var(--transition);
+  }
+
+  .dash-header {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color var(--transition);
+  }
+
+  .dash-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .dash-tabs {
+    display: flex;
+    gap: 4px;
+  }
+
+  .dash-tab {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .dash-tab.active {
+    background: var(--primary);
+    color: #212529;
+  }
+
+  .dash-tab:not(.active):hover {
+    background: var(--surface);
+  }
+
+  .dash-body {
+    padding: 28px;
+  }
+
+  /* Chart mockup */
+  .chart-area {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 180px;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+  }
+
+  .chart-bar-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  .chart-bar {
+    width: 100%;
+    max-width: 48px;
+    border-radius: 8px 8px 4px 4px;
+    background: var(--surface);
+    transition: background 0.3s, height 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .chart-bar.accent { background: var(--primary); }
+
+  .chart-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* Metric rows */
+  .metric-rows {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .metric-item {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: background var(--transition);
+  }
+
+  .metric-label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    font-weight: 500;
+    transition: color var(--transition);
+  }
+
+  .metric-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .metric-change {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4CAF50;
+    margin-left: 6px;
+  }
+
+  .metric-change.down { color: #EF5350; }
+
+  /* ─── Form Elements Preview ─── */
+  .form-section {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .form-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    transition: background var(--transition), border-color var(--transition);
+  }
+
+  .form-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .input-group {
+    margin-bottom: 18px;
+  }
+
+  .input-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    transition: color var(--transition);
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 11px 16px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-primary);
+    transition: all 0.2s, background var(--transition), border-color var(--transition), color var(--transition);
+    outline: none;
+  }
+
+  .input-field::placeholder { color: var(--text-secondary); opacity: 0.6; }
+
+  .input-field:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-subtle);
+  }
+
+  textarea.input-field {
+    min-height: 90px;
+    resize: vertical;
+  }
+
+  /* Badges */
+  .badges-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .badge {
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .badge-primary { background: var(--primary); color: #212529; }
+  .badge-surface { background: var(--badge-bg); color: var(--text-secondary); }
+  .badge-accent { background: var(--accent); color: #E1E2E3; }
+
+  /* Toggle */
+  .toggles-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .toggle-label {
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .toggle-switch {
+    width: 42px;
+    height: 24px;
+    background: var(--toggle-bg);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+
+  .toggle-switch::after {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s, background 0.3s;
+  }
+
+  .toggle-switch.on { background: var(--primary); }
+  .toggle-switch.on::after { transform: translateX(18px); }
+
+  /* Progress bar */
+  .progress-group {
+    margin-bottom: 20px;
+  }
+
+  .progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .progress-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .progress-value {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  .progress-track {
+    height: 8px;
+    background: var(--surface);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: background var(--transition);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 4px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Avatar list */
+  .avatar-group {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #212529;
+    margin-left: -8px;
+    border: 2.5px solid var(--bg-alt);
+    transition: border-color var(--transition), transform 0.2s;
+    cursor: pointer;
+  }
+
+  .avatar:first-child { margin-left: 0; }
+  .avatar:hover { transform: translateY(-3px); z-index: 1; }
+
+  .avatar-1 { background: var(--primary); }
+  .avatar-2 { background: #FFCE73; }
+  .avatar-3 { background: #FFD99A; }
+  .avatar-4 { background: var(--accent); color: #E1E2E3; }
+  .avatar-more { background: var(--surface); color: var(--text-secondary); }
+
+  /* ─── Color Palette Display ─── */
+  .palette-section {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .palette-swatch {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.25s, border-color var(--transition);
+    cursor: pointer;
+  }
+
+  .palette-swatch:hover { transform: translateY(-2px); }
+
+  .swatch-color {
+    height: 80px;
+    transition: background 0.4s;
+  }
+
+  .swatch-info {
+    padding: 12px 14px;
+    background: var(--bg-alt);
+    transition: background var(--transition);
+  }
+
+  .swatch-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color var(--transition);
+  }
+
+  .swatch-hex {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    font-family: 'DM Sans', monospace;
+    margin-top: 2px;
+    transition: color var(--transition);
+  }
+
+  /* ─── Footer ─── */
+  .footer {
+    border-top: 1px solid var(--border);
+    transition: border-color var(--transition);
+  }
+
+  .footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    transition: color var(--transition);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--primary); }
+
+  /* ─── Notification Toast ─── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 8px 32px var(--shadow-lg);
+    max-width: 340px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), background var(--transition), border-color var(--transition);
+    z-index: 200;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .toast-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--primary-subtle);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .toast-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+    transition: color var(--transition);
+  }
+
+  .toast-desc {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    transition: color var(--transition);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2rem; }
+    .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+  }
+
+  /* ─── Animations ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-in {
+    animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- ─── Navbar ─── -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">A</div>
+      Aurum
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">홈</a></li>
+      <li><a href="#">기능</a></li>
+      <li><a href="#">대시보드</a></li>
+      <li><a href="#">가격</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="테마 전환">
+        <span class="theme-toggle-icon sun">☀️</span>
+        <span class="theme-toggle-icon moon">🌙</span>
+      </button>
+      <a href="#" class="btn btn-primary btn-sm">시작하기</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── Hero ─── -->
+<section class="hero">
+  <div class="hero-badge animate-in">Color Theme Preview</div>
+  <h1 class="animate-in delay-1">
+    <span class="highlight">#FFBF4F</span>로<br>
+    완성하는 따뜻한 인터페이스
+  </h1>
+  <p class="animate-in delay-2">
+    활기차고 세련된 옐로우 포인트 컬러를 중심으로 구성된 라이트·다크 테마를 실시간으로 전환하며 확인해 보세요.
+  </p>
+  <div class="hero-actions animate-in delay-3">
+    <a href="#" class="btn btn-primary">둘러보기 →</a>
+    <a href="#" class="btn btn-secondary">색상 팔레트 보기</a>
+  </div>
+</section>
+
+<!-- ─── Features ─── -->
+<section class="features">
+  <p class="section-label animate-in">Features</p>
+  <h2 class="section-title animate-in delay-1">핵심 기능</h2>
+  <p class="section-desc animate-in delay-2">깔끔한 카드 레이아웃과 포인트 컬러가 만들어내는 시각적 위계를 확인하세요.</p>
+  <div class="features-grid">
+    <div class="feature-card animate-in delay-1">
+      <div class="feature-icon">⚡</div>
+      <h3>빠른 성능</h3>
+      <p>최적화된 렌더링과 효율적인 데이터 처리로 어떤 디바이스에서든 부드러운 경험을 제공합니다.</p>
+    </div>
+    <div class="feature-card animate-in delay-2">
+      <div class="feature-icon">🎨</div>
+      <h3>맞춤 테마</h3>
+      <p>라이트와 다크 테마를 한 번의 클릭으로 전환하세요. 모든 컴포넌트가 자연스럽게 적응합니다.</p>
+    </div>
+    <div class="feature-card animate-in delay-3">
+      <div class="feature-icon">🔒</div>
+      <h3>보안 설계</h3>
+      <p>엔드투엔드 암호화와 역할 기반 접근 제어로 데이터를 안전하게 보호합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Stats ─── -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-number">24K+</div>
+      <div class="stat-label">활성 사용자</div>
+    </div>
+    <div>
+      <div class="stat-number">99.9%</div>
+      <div class="stat-label">서비스 가동률</div>
+    </div>
+    <div>
+      <div class="stat-number">150+</div>
+      <div class="stat-label">통합 서비스</div>
+    </div>
+    <div>
+      <div class="stat-number">4.9</div>
+      <div class="stat-label">사용자 만족도</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Dashboard Preview ─── -->
+<section class="dashboard-section">
+  <p class="section-label">Dashboard</p>
+  <h2 class="section-title">데이터 시각화</h2>
+  <p class="section-desc">대시보드 컴포넌트에서 포인트 컬러가 어떻게 활용되는지 살펴보세요.</p>
+  <div class="dashboard-card">
+    <div class="dash-header">
+      <h3>주간 실적 요약</h3>
+      <div class="dash-tabs">
+        <button class="dash-tab active">주간</button>
+        <button class="dash-tab">월간</button>
+        <button class="dash-tab">연간</button>
+      </div>
+    </div>
+    <div class="dash-body">
+      <div class="chart-area" id="chart"></div>
+      <div class="metric-rows">
+        <div class="metric-item">
+          <div class="metric-label">총 매출</div>
+          <div class="metric-value">₩12.4M <span class="metric-change">+12.5%</span></div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">신규 가입</div>
+          <div class="metric-value">1,847 <span class="metric-change">+8.2%</span></div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">전환율</div>
+          <div class="metric-value">3.42% <span class="metric-change down">-0.3%</span></div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-label">평균 체류 시간</div>
+          <div class="metric-value">4m 23s <span class="metric-change">+15.1%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Form & Components ─── -->
+<section class="form-section">
+  <p class="section-label">Components</p>
+  <h2 class="section-title">UI 요소 미리보기</h2>
+  <p class="section-desc">입력 폼, 배지, 토글, 진행바 등 다양한 컴포넌트를 확인하세요.</p>
+  <div class="form-grid">
+    <!-- Left: Form -->
+    <div class="form-card">
+      <h3>문의하기</h3>
+      <div class="input-group">
+        <label>이름</label>
+        <input type="text" class="input-field" placeholder="홍길동">
+      </div>
+      <div class="input-group">
+        <label>이메일</label>
+        <input type="email" class="input-field" placeholder="hello@example.com">
+      </div>
+      <div class="input-group">
+        <label>메시지</label>
+        <textarea class="input-field" placeholder="문의 내용을 입력하세요..."></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;">전송하기</button>
+    </div>
+    <!-- Right: Components -->
+    <div class="form-card">
+      <h3>컴포넌트 모음</h3>
+
+      <div style="font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:10px;">배지</div>
+      <div class="badges-row">
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-accent">Accent</span>
+        <span class="badge badge-surface">Surface</span>
+      </div>
+
+      <div style="font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:10px;">토글</div>
+      <div class="toggles-group">
+        <div class="toggle-row">
+          <span class="toggle-label">알림 수신</span>
+          <button class="toggle-switch on" onclick="this.classList.toggle('on')"></button>
+        </div>
+        <div class="toggle-row">
+          <span class="toggle-label">자동 저장</span>
+          <button class="toggle-switch" onclick="this.classList.toggle('on')"></button>
+        </div>
+      </div>
+
+      <div style="font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:10px;">진행률</div>
+      <div class="progress-group">
+        <div class="progress-header">
+          <span class="progress-title">프로젝트 진행률</span>
+          <span class="progress-value">68%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width:68%"></div>
+        </div>
+      </div>
+
+      <div style="font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:10px;">팀 멤버</div>
+      <div class="avatar-group">
+        <div class="avatar avatar-1">SH</div>
+        <div class="avatar avatar-2">JY</div>
+        <div class="avatar avatar-3">MK</div>
+        <div class="avatar avatar-4">DW</div>
+        <div class="avatar avatar-more">+3</div>
+      </div>
+
+      <div style="font-size:0.82rem;font-weight:600;color:var(--text-secondary);margin-bottom:10px;">버튼 스타일</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm">Primary</button>
+        <button class="btn btn-secondary btn-sm">Secondary</button>
+        <button class="btn btn-ghost btn-sm">Ghost</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Palette Swatches ─── -->
+<section class="palette-section">
+  <p class="section-label">Palette</p>
+  <h2 class="section-title">현재 테마 색상표</h2>
+  <p class="section-desc">각 스와치를 클릭하면 HEX 값이 클립보드에 복사됩니다.</p>
+  <div class="palette-grid" id="palette-grid"></div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-text">© 2026 Aurum — Theme Preview with #FFBF4F</p>
+    <ul class="footer-links">
+      <li><a href="#">깃허브</a></li>
+      <li><a href="#">문서</a></li>
+      <li><a href="#">피드백</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- ─── Toast ─── -->
+<div class="toast" id="toast">
+  <div class="toast-icon">📋</div>
+  <div>
+    <div class="toast-title">복사 완료</div>
+    <div class="toast-desc" id="toast-desc">색상 코드가 클립보드에 복사되었습니다.</div>
+  </div>
+</div>
+
+<script>
+  // Theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    html.setAttribute('data-theme', next);
+    renderPalette();
+  }
+
+  // Chart
+  function renderChart() {
+    const container = document.getElementById('chart');
+    const days = ['월', '화', '수', '목', '금', '토', '일'];
+    const values = [45, 62, 38, 80, 55, 72, 90];
+    const max = Math.max(...values);
+    container.innerHTML = '';
+    days.forEach((d, i) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'chart-bar-wrapper';
+      const bar = document.createElement('div');
+      bar.className = 'chart-bar' + (values[i] === max ? ' accent' : '');
+      bar.style.height = '0%';
+      const label = document.createElement('span');
+      label.className = 'chart-label';
+      label.textContent = d;
+      wrapper.appendChild(bar);
+      wrapper.appendChild(label);
+      container.appendChild(wrapper);
+      requestAnimationFrame(() => {
+        setTimeout(() => { bar.style.height = (values[i] / max * 100) + '%'; }, i * 80);
+      });
+    });
+  }
+
+  // Palette swatches
+  const lightPalette = [
+    { name: 'Primary', hex: '#FFBF4F' },
+    { name: 'Hover', hex: '#E5A842' },
+    { name: 'Light', hex: '#FFCE73' },
+    { name: 'Background', hex: '#FAFAFA' },
+    { name: 'Surface', hex: '#F0F2F5' },
+    { name: 'Text Primary', hex: '#212529' },
+    { name: 'Text Secondary', hex: '#6C757D' },
+    { name: 'Accent', hex: '#34495E' },
+  ];
+  const darkPalette = [
+    { name: 'Primary', hex: '#FFBF4F' },
+    { name: 'Hover', hex: '#E5A842' },
+    { name: 'Light', hex: '#FFCE73' },
+    { name: 'Background', hex: '#121212' },
+    { name: 'Surface', hex: '#1E1E1E' },
+    { name: 'Text Primary', hex: '#E1E2E3' },
+    { name: 'Text Secondary', hex: '#9E9E9E' },
+    { name: 'Accent', hex: '#2C3E50' },
+  ];
+
+  function renderPalette() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const palette = isDark ? darkPalette : lightPalette;
+    const grid = document.getElementById('palette-grid');
+    grid.innerHTML = '';
+    palette.forEach(s => {
+      const swatch = document.createElement('div');
+      swatch.className = 'palette-swatch';
+      swatch.onclick = () => copyColor(s.hex, s.name);
+      swatch.innerHTML = `
+        <div class="swatch-color" style="background:${s.hex}"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">${s.name}</div>
+          <div class="swatch-hex">${s.hex}</div>
+        </div>`;
+      grid.appendChild(swatch);
+    });
+  }
+
+  // Copy + toast
+  function copyColor(hex, name) {
+    navigator.clipboard.writeText(hex).catch(() => {});
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-desc').textContent = `${name} (${hex})가 복사되었습니다.`;
+    toast.classList.add('show');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  // Tab switching
+  document.querySelectorAll('.dash-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Init
+  renderChart();
+  renderPalette();
+</script>
+</body>
+</html>

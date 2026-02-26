@@ -10,12 +10,13 @@ import { emails, tasks, meetings } from "@/data/mock-data";
 export default function WorkplaceItemDetail() {
   const params = useParams();
   const router = useRouter();
-  
+
   const type = params.type as string;
   const id = params.id as string;
 
   // Find the exact item based on Type and ID
-  let item: Record<string, any> | null = null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let item: any = null;
   if (type === "email") {
     item = emails.find((e) => e.id.toString() === id) || null;
   } else if (type === "task") {
@@ -107,8 +108,10 @@ export default function WorkplaceItemDetail() {
 
           <div>
             <h3 className="mb-2 font-semibold">Description</h3>
-            <div className="rounded-lg border p-4 text-sm text-zinc-700 dark:text-zinc-300">
-              {item.preview || "No detailed description available for this item."}
+            <div className="rounded-lg border bg-white p-6 text-sm text-zinc-800 shadow-sm dark:bg-zinc-950 dark:text-zinc-200">
+              <div className="whitespace-pre-wrap leading-relaxed">
+                {item.content || item.preview || "No detailed description available for this item."}
+              </div>
             </div>
           </div>
         </CardContent>

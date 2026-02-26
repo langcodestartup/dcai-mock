@@ -40,13 +40,17 @@ const meetingBadge: Record<string, { label: string; style: string }> = {
 };
 
 export default function DashboardPage() {
+  const recentEmails = emails.slice(0, 4);
+  const priorityTasks = tasks.filter((t) => t.priority === "Critical" || t.priority === "High");
+  const upcomingMeetings = meetings.slice(0, 3);
+
   return (
     <div className="p-6">
       <div className="mx-auto max-w-[1920px]">
         <div className="mb-6">
           <h1 className="mb-2 text-3xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground">
-            You have 14 action items requiring attention
+            You have {recentEmails.length + priorityTasks.length + upcomingMeetings.length} action items requiring attention
           </p>
         </div>
 
@@ -60,8 +64,10 @@ export default function DashboardPage() {
                   Emails
                 </span>
               </div>
-              <div className="text-3xl font-bold">5</div>
-              <div className="mt-2 text-xs text-muted-foreground">3 urgent</div>
+              <div className="text-3xl font-bold">{emails.length}</div>
+              <div className="mt-2 text-xs text-muted-foreground">
+                {emails.filter(e => e.status === "Unread" || e.status === "Needs Reply").length} urgent
+              </div>
             </CardContent>
           </Card>
           <Card>
@@ -72,8 +78,10 @@ export default function DashboardPage() {
                   Tasks
                 </span>
               </div>
-              <div className="text-3xl font-bold">6</div>
-              <div className="mt-2 text-xs text-muted-foreground">2 urgent</div>
+              <div className="text-3xl font-bold">{tasks.length}</div>
+              <div className="mt-2 text-xs text-muted-foreground">
+                {priorityTasks.length} urgent
+              </div>
             </CardContent>
           </Card>
           <Card>
@@ -84,8 +92,10 @@ export default function DashboardPage() {
                   Meetings
                 </span>
               </div>
-              <div className="text-3xl font-bold">4</div>
-              <div className="mt-2 text-xs text-muted-foreground">2 urgent</div>
+              <div className="text-3xl font-bold">{meetings.length}</div>
+              <div className="mt-2 text-xs text-muted-foreground">
+                {meetings.filter(m => m.priority !== "normal").length} urgent
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -94,7 +104,7 @@ export default function DashboardPage() {
         <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-900 dark:bg-red-950">
           <h3 className="mb-3 flex items-center gap-2 font-semibold text-red-800 dark:text-red-200">
             <AlertTriangle className="h-5 w-5" />
-            Urgent Alerts (5)
+            Urgent Alerts ({urgentAlerts.length})
           </h3>
           <div className="space-y-2 text-sm text-red-700 dark:text-red-300">
             {urgentAlerts.map((alert, i) => (
@@ -116,30 +126,28 @@ export default function DashboardPage() {
               <CardHeader className="border-b pb-4">
                 <div className="flex items-center gap-2">
                   <Mail className="h-6 w-6 text-blue-600" />
-                  <CardTitle>Emails</CardTitle>
+                  <CardTitle>Recent Emails</CardTitle>
                   <Badge className="ml-auto bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                    5
+                    {recentEmails.length}
                   </Badge>
                 </div>
               </CardHeader>
               <CardContent className="max-h-[500px] space-y-3 overflow-y-auto p-4">
-                {emails.map((email) => (
+                {recentEmails.map((email) => (
                   <div
                     key={email.id}
-                    className={`rounded-lg border p-3 ${
-                      priorityStyles[email.priority] || ""
-                    }`}
+                    className={`rounded-lg border p-3 ${priorityStyles[email.priority] || ""
+                      }`}
                   >
                     <div className="flex items-start justify-between">
                       <p className="text-sm font-medium">{email.title}</p>
                       <span
-                        className={`ml-2 shrink-0 text-xs font-semibold ${
-                          email.priority === "Critical"
+                        className={`ml-2 shrink-0 text-xs font-semibold ${email.priority === "Critical"
                             ? "text-red-600"
                             : email.priority === "High"
-                            ? "text-orange-600"
-                            : "text-muted-foreground"
-                        }`}
+                              ? "text-orange-600"
+                              : "text-muted-foreground"
+                          }`}
                       >
                         {email.priority}
                       </span>
@@ -162,32 +170,29 @@ export default function DashboardPage() {
               <CardHeader className="border-b pb-4">
                 <div className="flex items-center gap-2">
                   <ClipboardCheck className="h-6 w-6 text-red-600" />
-                  <CardTitle>Tasks</CardTitle>
+                  <CardTitle>Priority Tasks</CardTitle>
                   <Badge className="ml-auto bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                    6
+                    {priorityTasks.length}
                   </Badge>
                 </div>
               </CardHeader>
               <CardContent className="max-h-[500px] space-y-3 overflow-y-auto p-4">
-                {tasks.map((task) => (
+                {priorityTasks.map((task) => (
                   <div
                     key={task.id}
-                    className={`rounded-lg border p-3 ${
-                      priorityStyles[task.priority] || ""
-                    }`}
+                    className={`rounded-lg border p-3 ${priorityStyles[task.priority] || ""
+                      }`}
                   >
                     <div className="flex items-center gap-2">
                       <span
-                        className={`rounded px-1.5 py-0.5 text-xs font-medium ${
-                          priorityBadge[task.priority]
-                        }`}
+                        className={`rounded px-1.5 py-0.5 text-xs font-medium ${priorityBadge[task.priority]
+                          }`}
                       >
                         {task.priority}
                       </span>
                       <span
-                        className={`rounded px-1.5 py-0.5 text-xs font-medium ${
-                          statusBadge[task.status] || "bg-secondary text-secondary-foreground"
-                        }`}
+                        className={`rounded px-1.5 py-0.5 text-xs font-medium ${statusBadge[task.status] || "bg-secondary text-secondary-foreground"
+                          }`}
                       >
                         {task.status}
                       </span>
@@ -210,28 +215,26 @@ export default function DashboardPage() {
               <CardHeader className="border-b pb-4">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-6 w-6 text-green-600" />
-                  <CardTitle>Meetings</CardTitle>
+                  <CardTitle>Upcoming</CardTitle>
                   <Badge className="ml-auto bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                    4
+                    {upcomingMeetings.length}
                   </Badge>
                 </div>
               </CardHeader>
               <CardContent className="max-h-[500px] space-y-3 overflow-y-auto p-4">
-                {meetings.map((meeting) => (
+                {upcomingMeetings.map((meeting) => (
                   <div
                     key={meeting.id}
-                    className={`rounded-lg border p-3 ${
-                      priorityStyles[meeting.priority] || ""
-                    }`}
+                    className={`rounded-lg border p-3 ${priorityStyles[meeting.priority] || ""
+                      }`}
                   >
                     <p className="text-sm font-medium">{meeting.title}</p>
                     <p className="mt-1 text-xs text-muted-foreground">
                       {meeting.time}
                     </p>
                     <span
-                      className={`mt-2 inline-block rounded px-1.5 py-0.5 text-xs font-medium ${
-                        meetingBadge[meeting.priority].style
-                      }`}
+                      className={`mt-2 inline-block rounded px-1.5 py-0.5 text-xs font-medium ${meetingBadge[meeting.priority].style
+                        }`}
                     >
                       {meetingBadge[meeting.priority].label}
                     </span>
