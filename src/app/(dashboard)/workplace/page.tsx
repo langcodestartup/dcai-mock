@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Mail, ClipboardCheck, Calendar, Search, Plus } from "lucide-react";
+import { Mail, ClipboardCheck, Calendar, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -123,8 +123,8 @@ export default function WorkplacePage() {
                   task.priority === "Critical"
                     ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
                     : task.priority === "High"
-                    ? "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
-                    : "bg-secondary text-secondary-foreground"
+                      ? "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+                      : "bg-secondary text-secondary-foreground"
                 }
               >
                 {task.priority}
@@ -185,45 +185,34 @@ export default function WorkplacePage() {
       <div className="mb-4 flex gap-2 border-b">
         <button
           onClick={() => setActiveTab("email")}
-          className={`flex items-center gap-2 px-4 py-2 font-medium ${
-            activeTab === "email"
-              ? "border-b-2 border-primary text-primary"
-              : "text-muted-foreground hover:text-foreground"
-          }`}
+          className={`flex items-center gap-2 px-4 py-2 font-medium ${activeTab === "email"
+            ? "border-b-2 border-primary text-primary"
+            : "text-muted-foreground hover:text-foreground"
+            }`}
         >
           <Mail className="h-4 w-4" />
           Email
         </button>
         <button
           onClick={() => setActiveTab("task")}
-          className={`flex items-center gap-2 px-4 py-2 font-medium ${
-            activeTab === "task"
-              ? "border-b-2 border-primary text-primary"
-              : "text-muted-foreground hover:text-foreground"
-          }`}
+          className={`flex items-center gap-2 px-4 py-2 font-medium ${activeTab === "task"
+            ? "border-b-2 border-primary text-primary"
+            : "text-muted-foreground hover:text-foreground"
+            }`}
         >
           <ClipboardCheck className="h-4 w-4" />
           Task
         </button>
         <button
           onClick={() => setActiveTab("meeting")}
-          className={`flex items-center gap-2 px-4 py-2 font-medium ${
-            activeTab === "meeting"
-              ? "border-b-2 border-primary text-primary"
-              : "text-muted-foreground hover:text-foreground"
-          }`}
+          className={`flex items-center gap-2 px-4 py-2 font-medium ${activeTab === "meeting"
+            ? "border-b-2 border-primary text-primary"
+            : "text-muted-foreground hover:text-foreground"
+            }`}
         >
           <Calendar className="h-4 w-4" />
           Meeting
         </button>
-      </div>
-
-      {/* Add Button */}
-      <div className="mb-4">
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          Add {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}
-        </Button>
       </div>
 
       {/* Search */}
